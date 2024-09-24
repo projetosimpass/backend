@@ -1,6 +1,11 @@
-import { Prop, Schema } from '@nestjs/mongoose';
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 
-@Schema()
+enum UserProfile {
+  ORGANIZER,
+  SPECTATOR,
+}
+
+@Schema({ timestamps: true })
 export class User {
   @Prop()
   name: string;
@@ -8,11 +13,8 @@ export class User {
   email: string;
   @Prop()
   password: string;
-  @Prop()
+  @Prop({ enum: UserProfile })
   profile: UserProfile;
 }
 
-enum UserProfile {
-  ORGANIZER,
-  SPECTATOR,
-}
+export const UserSchema = SchemaFactory.createForClass(User);

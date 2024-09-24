@@ -10,7 +10,7 @@ export enum TicketType {
   ONLINE = 'ONLINE',
 }
 
-@Schema()
+@Schema({ timestamps: true })
 export class Ticket {
   @Prop()
   price: number;
