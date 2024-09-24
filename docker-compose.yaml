@@ -1,4 +1,19 @@
 services:
+  app:
+    build: .
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app
+      - /app/node_modules
+    environment:
+      - DATABASE_URI=${DATABASE_URI}
+      - DATABASE_NAME=${DATABASE_NAME}
+      - DATABASE_USER=${MONGO_INITDB_ROOT_USERNAME}
+      - DATABASE_PASS=${MONGO_INITDB_ROOT_PASSWORD}
+    depends_on:
+      - mongodb
+
   mongodb:
     image: mongo
     ports:
@@ -8,3 +23,4 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
     volumes:
       - ./mongodb/data:/data/db
+

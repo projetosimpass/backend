@@ -8,8 +8,12 @@ import { UserModule } from './user/user.module';
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
-    MongooseModule.forRoot(process.env.MONGO_URI, {
-      dbName: process.env.MONGO_DATABASE_NAME,
+    MongooseModule.forRoot(process.env.DATABASE_URI, {
+      dbName: process.env.DATABASE_NAME,
+      auth: {
+        username: process.env.MONGO_INITDB_ROOT_USERNAME,
+        password: process.env.MONGO_INITDB_ROOT_PASSWORD,
+      },
     }),
     EventsModule,
     TicketModule,

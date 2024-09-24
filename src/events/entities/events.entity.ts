@@ -3,7 +3,7 @@ import { Ticket } from 'src/ticket/entities/ticket.entity';
 import { User } from 'src/user/entities/user.entity';
 import { Category } from './category.entity';
 
-@Schema()
+@Schema({ timestamps: true })
 export class Event {
   @Prop({ unique: true, required: true })
   name: string;
